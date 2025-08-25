@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     DB_HOST: str
     DB_PORT: str
     DB_NAME: str
+    NODE_ENV: str = "development"
 
     class Config:
         env_file = ".env"
@@ -18,6 +19,11 @@ class Settings(BaseSettings):
         
     @property
     def DATABASE_URL(self) -> str:
+        if (self.NODE_ENV == "docker"):
+            return (
+                f"postgresql://{self.DB_USER}:{self.DB_PASSWORD}"
+                f"@postgresql:{self.DB_PORT}/{self.DB_NAME}"
+            )
         return (
             f"postgresql://{self.DB_USER}:{self.DB_PASSWORD}"
             f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
