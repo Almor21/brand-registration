@@ -1,0 +1,59 @@
+services:
+  
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - db-network
+
+  backend:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: brand_backend
+    env_file:
+      - ./apps/api/.env
+    depends_on:
+      - postgres
+    environment:
+      NODE_ENV: docker
+      DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
+      ALLOWED_ORIGINS: backend,frontend
+    command: sh -c "npm run migration:up && npm run dev"
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+      - db-network
+
+  frontend:
+    build:
+      context: ./apps/client
+      dockerfile: Dockerfile
+    container_name: brand_frontend
+    env_file:
+      - ./apps/client/.env
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
+    driver: bridge
+  db-network:
+    driver: bridge
