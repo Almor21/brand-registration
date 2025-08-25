@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String
 from typing import Optional
-from db.database import Base
+from src.db.database import Base
 
 class Brand(Base):
     __tablename__ = "brands"

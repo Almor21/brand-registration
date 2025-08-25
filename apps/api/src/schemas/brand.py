@@ -5,7 +5,7 @@ class BaseBrand(BaseModel):
     name: str = Field(description="The name of the brand")
     owner: str = Field(description="The owner of the brand")
     description: Optional[str] = Field(default="", description="A brief description of the brand")
-    state: str = Field(description="The current state of the brand")
+    state: str = Field(default='active',description="The current state of the brand")
 
 
 class BrandCreate(BaseBrand):

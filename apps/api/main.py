@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from core.config import settings
-from routers import brand
+from src.core.config import settings
+from src.brands import controller
 
 app = FastAPI(
     title="Brand Registration API",
@@ -20,4 +20,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(brand.router, prefix=settings.API_PREFIX)
+app.include_router(controller.router, prefix=settings.API_PREFIX)
