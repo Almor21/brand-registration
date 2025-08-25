@@ -67,13 +67,34 @@ Si prefieres correr el proyecto en modo desarrollo sin usar Docker Compose, pued
 
 1. Asegúrate de tener PostgreSQL instalado y ejecutándose en tu máquina.
 2. Crea una base de datos para el proyecto y configura tu `.env` local con los datos de conexión.
-3. Instala las dependencias del proyecto con:
+3. Entra a la carpeta del backend:
 
 ```bash
-npm install
+cd apps/api
 ````
 
-4. Levanta los servicios en modo desarrollo usando `turborepo`:
+4. Crea un virtual environment y actívalo:
+
+```bash
+python -m venv venv
+source venv/bin/activate  # En Linux/macOS
+venv\Scripts\activate     # En Windows
+```
+
+5. Instala las dependencias de Python:
+
+```bash
+pip install -r requirements.txt
+```
+
+6. Vuelve a la raíz del proyecto, instala las dependencias de Node:
+
+```bash
+cd ../../
+npm install
+```
+
+7. Levanta los servicios en modo desarrollo usando `turborepo`:
 
 ```bash
 npx turbo dev
