@@ -1,0 +1,8 @@
+import * as yup from 'yup';
+
+export const editBrandSchema = yup.object().shape({
+  name: yup.string().required('Nombre es requerido.'),
+  owner: yup.string().required('Titular es requerido.'),
+  description: yup.string().required('Descripcion es requerida'),
+  state: yup.string().required(),
+});
