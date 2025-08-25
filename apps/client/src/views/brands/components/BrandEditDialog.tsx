@@ -3,6 +3,7 @@ import TextInput from '@/components/ui/TextInput';
 import { Button, Dialog, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { FormProvider, UseFormReturn } from 'react-hook-form';
+import { UpdateBrand } from '@/interfaces/UpdateBrand';
 
 function BrandEditDialog({
   open,
@@ -12,7 +13,8 @@ function BrandEditDialog({
 }: {
   open: boolean;
   onClose: () => void;
-  onSubmit: (data: any) => void;
+  onSubmit: (data: UpdateBrand) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   methods: UseFormReturn<any>;
 }) {
   return (

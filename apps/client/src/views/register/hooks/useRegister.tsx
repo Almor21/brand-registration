@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { createBrandSchema } from '../schemas/createBrand.schema';
 import { useMutation } from '@tanstack/react-query';

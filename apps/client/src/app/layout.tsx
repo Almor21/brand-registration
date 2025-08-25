@@ -3,7 +3,7 @@ import { Open_Sans } from 'next/font/google';
 import './globals.css';
 import NavBar from '../components/ui/NavBar';
 import QueryProvider from '@/components/QueryProvider';
-import { Toaster } from "react-hot-toast";
+import ToasterProvider from '@/components/ToasterProvider';
 
 const openSans = Open_Sans({
   variable: '--font-open-sans',
@@ -24,11 +24,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${openSans.className} antialiased justify-center flex`}>
         <QueryProvider>
-          <Toaster position="top-right" reverseOrder={false} />
-          <NavBar />
-          <main className="max-w-[1800px] px-[100px] pt-[80px] w-full">
-            {children}
-          </main>
+          <ToasterProvider>
+            <NavBar />
+            <main className="max-w-[1800px] px-[100px] pt-[80px] w-full">
+              {children}
+            </main>
+          </ToasterProvider>
         </QueryProvider>
       </body>
     </html>

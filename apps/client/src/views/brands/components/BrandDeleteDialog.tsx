@@ -1,4 +1,3 @@
-import ControlledSwitch from '@/views/brands/components/ControlledSwitch';
 import { Button, Dialog, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 
@@ -9,7 +8,7 @@ function BrandDeleteDialog({
 }: {
   open: boolean;
   onClose: () => void;
-  onSubmit: (data: any) => void;
+  onSubmit: () => void;
 }) {
   return (
     <Dialog open={open} onClose={onClose}>
