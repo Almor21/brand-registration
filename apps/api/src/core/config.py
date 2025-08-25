@@ -3,8 +3,6 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     API_PREFIX: str = "/api"
     
-    ALLOWED_ORIGINS: str
-
     DB_USER: str
     DB_PASSWORD: str
     DB_HOST: str
